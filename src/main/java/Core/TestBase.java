@@ -9,7 +9,7 @@ public class TestBase {
     public void configure(){
         Configuration.timeout = 10000;
         Configuration.baseUrl = "https://the-internet.herokuapp.com/";
-        Configuration.browser = WebDriverRunner.CHROME;
+        Configuration.browser = WebDriverRunner.HTMLUNIT;
 
     }
 }

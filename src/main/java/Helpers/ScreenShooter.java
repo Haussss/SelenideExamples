@@ -1,0 +1,26 @@
+package Helpers;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+import org.testng.reporters.ExitCodeListener;
+import ru.yandex.qatools.allure.annotations.Attachment;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
+/**
+ * Created by Admin on 30.11.2015.
+ */
+public class ScreenShooter extends ExitCodeListener {
+@Override
+    public void onTestFailure(ITestResult result
+){super.onTestFailure(result);
+makeScreenshot();
+}
+    @Attachment
+    public byte[] makeScreenshot() {
+
+        return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+}
