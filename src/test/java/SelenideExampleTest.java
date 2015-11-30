@@ -71,11 +71,17 @@ public class SelenideExampleTest extends TestBase {
         open("");
         List<String> links = Helpers.readAllLines(LINKS_FILE);
         ElementsCollection linkes = $$(By.cssSelector("li a"));
-        String[] jopa = linkes.getTexts();
-        List<String> ddd = Arrays.asList(jopa);
+        String[] linkk = linkes.getTexts();
+        List<String> ddd = Arrays.asList(linkk);
         links.removeAll(ddd);
-        System.out.println(links);
         Assert.assertTrue(links.isEmpty(),"Elements are no equals: " + links.toString());
-
     }
-}
+    @Test
+    public void linkssTest() throws IOException {
+        open("");
+        List<String> links = Helpers.readAllLines(LINKS_FILE);
+        ElementsCollection linkes = $$(By.cssSelector("li a"));
+        Object[] linkss = links.toArray();
+
+   //     $$(By.cssSelector("li a")).shouldHave(CollectionCondition.texts(linkss));
+}}
