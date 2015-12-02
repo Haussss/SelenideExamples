@@ -9,10 +9,7 @@ import ru.yandex.qatools.allure.annotations.Attachment;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-/**
- * Created by Admin on 30.11.2015.
- */
-public class ScreenShooter extends ExitCodeListener {
+public class ScreenShoter extends ExitCodeListener {
 @Override
     public void onTestFailure(ITestResult result
 ){super.onTestFailure(result);

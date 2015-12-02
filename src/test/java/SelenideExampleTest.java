@@ -1,33 +1,29 @@
 import Core.TestBase;
 import Helpers.Helpers;
+import Helpers.ScreenShoter;
 import Pages.FactoryHomePage;
 import Pages.FactoryRegistrationPage;
+import Pages.StaticHomePage;
 import Pages.StaticRegistrationPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Screenshots;
 import com.codeborne.selenide.testng.BrowserPerClass;
-import com.codeborne.selenide.testng.BrowserPerTest;
-import com.codeborne.selenide.testng.ScreenShooter;
-import com.thoughtworks.selenium.ScreenshotListener;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ru.yandex.qatools.allure.annotations.Attachment;
-import Helpers.ScreenShooter;
-import java.io.File;
+import ru.yandex.qatools.allure.annotations.Issue;
+import ru.yandex.qatools.allure.annotations.TestCaseId;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-@Listeners({BrowserPerClass.class, Helpers.ScreenShooter.class})
+
+
+@Listeners({BrowserPerClass.class, ScreenShoter.class})
 
 public class SelenideExampleTest extends TestBase{
     private FactoryHomePage homePage;
@@ -38,7 +34,8 @@ public class SelenideExampleTest extends TestBase{
         registrationPage = open("login",FactoryRegistrationPage.class);
 
     }
-
+    @Issue("issue id = 1")
+    @TestCaseId("test-1")
     @Test
     public void simpleLoginTest(){
 
@@ -50,24 +47,39 @@ public class SelenideExampleTest extends TestBase{
         $("#flash").should(appear,cssClass("success"),text("You logged into a secure area! "));
 
     }
+    @Issue("issue id = 2")
+    @TestCaseId("test-2")
     @Test
     public void staticPageLoginTest(){
         StaticRegistrationPage.login("tomsmith", "SuperSecretPassword!");
         $(StaticRegistrationPage.FLASH).should(appear, cssClass("success"), text("You logged into a secure area!"));
     }
+    @Issue("issue id = 7")
+    @TestCaseId("test-7")
     @Test
     public void staticPageLogoutTest(){
+        StaticRegistrationPage.login("tomsmith", "SuperSecretPassword!");
+        StaticHomePage.logout();
+        $(StaticRegistrationPage.FLASH).should(appear, cssClass("success"), text("You logged into a secure area!"));
+
+    }
+    @Issue("issue id = 3")
+    @TestCaseId("test-3")
+    @Test
+    public void factoryPageLogoutTest(){
         homePage = registrationPage.login("tomsmith", "SuperSecretPassword!");
         registrationPage = homePage.logout();
         registrationPage.flash.should(appear, cssClass("success"), text("You logged out of the secure area!"));
     }
-
+    @Issue("issue id = 4")
+    @TestCaseId("test-4")
     @Test
     public void factoryPageLoginTest(){
         homePage = registrationPage.login("tomsmith", "SuperSecretPassword!");
         homePage.flash.should(appear, cssClass("success"), text("You logged into a secure area!"));
     }
-
+    @Issue("issue id = 5")
+    @TestCaseId("test-5")
     @Test
     public void linkssTest() throws IOException {
         open("");
@@ -78,7 +90,8 @@ public class SelenideExampleTest extends TestBase{
         links.removeAll(ddd);
         Assert.assertTrue(links.isEmpty(), "Elements are no equals: " + links.toString());
     }
-
+    @Issue("issue id = 6")
+    @TestCaseId("test-6")
     @Test
     public void linksTest() throws IOException {
         open("");

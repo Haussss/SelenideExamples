@@ -2,6 +2,7 @@ package Pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Selenide.page;
 
@@ -11,7 +12,7 @@ public class FactoryHomePage {
 
     @FindBy(css = "a.button")
     public SelenideElement logoutButton;
-
+@Step("logged out")
     public FactoryRegistrationPage logout(){
         logoutButton.click();
         return page(FactoryRegistrationPage.class);
